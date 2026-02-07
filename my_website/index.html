@@ -4,9 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planveroment | Smart Plant Care</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css" />
-    <link class ="poli" rel="icon" type="image/jpeg" href="favicon.jpeg">
+<link rel="icon" type="image/jpeg" href="favicon.jpeg">
+
   </head>
   <body>
     
@@ -16,33 +18,77 @@
         <span class="brand-name"></span>
       </div>
       <ul class="nav-right">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Plantos</a></li>
-        <li><a href="#">Community</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#plantos">Plantos</a></li>
+        <li><a href="#community">Community</a></li>
       </ul>
-      <div class="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
     </nav>
 
-    <section class="hero">
+    <section id="home" class="hero">
       <img src="back.jpeg" alt="Plant Care Hero" onerror="this.src='https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=2070&auto=format&fit=crop'">
       <div class="hero-overlay">
         <h1 class="hero-title">Do Care<br><span>Plant Care</span></h1>
         <p class="hero-subtitle">Because every plant deserves the right care 🌱</p>
-        <button class="cta-btn">Get Started</button>
+        <button class="cta-btn" onclick="document.getElementById('about-us').scrollIntoView({behavior: 'smooth'})">Get Started</button>
       </div>
     </section>
 
-    <section class="bg-slider-section">
+    <section id="about-us" class="about-section">
+      <div class="container">
+        
+        <div class="motto-wrapper">
+          <h2 class="section-heading">Our Motto</h2>
+          <div class="main-motto">
+            "Care Smart. Water Right. Grow Beautiful."
+          </div>
+          <div class="motto-variations">
+            <p>🌱 Care Smart. Water Right. Thrive Together.</p>
+            <p>🌿 Plan Smart. Water Right. Grow Green.</p>
+            <p>🌻 Track Smart. Water Right. Bloom Bright.</p>
+          </div>
+        </div>
+
+        <div class="team-wrapper">
+          <h2 class="section-heading">Know Our Developers</h2>
+          <div class="team-grid">
+            
+            <div class="team-card">
+              <div class="img-box">
+                <img src="mayank.jpg" alt="Mayank Singh" onerror="this.src='https://ui-avatars.com/api/?name=Mayank+Singh&background=0D8ABC&color=fff&size=150'">
+              </div>
+              <h3>Mayank Singh</h3>
+              <span class="role">Frontend Developer</span>
+            </div>
+
+            <div class="team-card">
+              <div class="img-box">
+                <img src="shailesh.jpg" alt="Shailesh Kumar" onerror="this.src='https://ui-avatars.com/api/?name=Shailesh+Kumar&background=4caf50&color=fff&size=150'">
+              </div>
+              <h3>Shailesh Kumar</h3>
+              <span class="role">Backend Developer</span>
+            </div>
+
+            <div class="team-card">
+              <div class="img-box">
+                <img src="ajeet.jpg" alt="Ajeet Singh" onerror="this.src='https://ui-avatars.com/api/?name=Ajeet+Singh&background=ff9800&color=fff&size=150'">
+              </div>
+              <h3>Ajeet Singh</h3>
+              <span class="role">UI/UX Designer</span>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="plantos" class="bg-slider-section">
       <div class="slider-container">
         
         <div class="bg-slide active">
           <div class="slide-half">
-            <img src="img7.jpeg" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=800&auto=format&fit=crop'">
+            <img src="img1.jpeg" onerror="this.src='https://images.unsplash.com/photo-1485955900006-10f4d324d411?q=80&w=800&auto=format&fit=crop'">
           </div>
           <div class="slide-half">
             <img src="img2.jpeg" onerror="this.src='https://images.unsplash.com/photo-1530968464165-7a1861cbaf9f?q=80&w=800&auto=format&fit=crop'">
@@ -58,31 +104,19 @@
           </div>
         </div>
 
-        <div class="bg-slide">
-          <div class="slide-half">
-            <img src="img5.jpeg" onerror="this.src='https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop'">
-          </div>
-          <div class="slide-half">
-            <img src="img6.jpeg" onerror="this.src='https://images.unsplash.com/photo-1520302667598-03c9d06fb015?q=80&w=800&auto=format&fit=crop'">
-          </div>
-        </div>
-
         <div class="slider-content">
           <h2>Smart Plant Assistant</h2>
           <p>Analyzing soil moisture, sunlight, and health in real-time.</p>
         </div>
-
       </div>
     </section>
     
-    <footer class="footer">
+    <footer id="community" class="footer">
       <div class="footer-container">
         <div class="footer-section">
           <h3>Planveroment</h3>
           <p>
             Your smart plant care assistant. Built with love for nature.
-            Plants need steady water, sunlight, and soil care.
-            Touch the soil often. Water only when dry.
           </p>
         </div>
         <div class="footer-section">
@@ -95,7 +129,6 @@
           <ul>
             <li><a href="#" target="_blank">Instagram</a></li>
             <li><a href="#">Facebook</a></li>
-            <li><a href="#">Help Center</a></li>
           </ul>
         </div>
       </div>
