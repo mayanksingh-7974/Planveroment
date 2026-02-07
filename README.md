@@ -1,6 +1,6 @@
-# Planto Mania - Smart Plant Care Assistant
+# Planveroment - Smart Plant Care Assistant
 
-Planto Mania is a modern web application designed to help plant enthusiasts manage their indoor and outdoor greenery with ease. Built by the **Spam Bytes** team, it solves the problem of improper watering and sunlight management through data-driven insights and AI-powered plant identification.
+Planveroment is a modern web application designed to help plant enthusiasts manage their indoor and outdoor greenery with ease. Built by the **Spam Bytes** team, it solves the problem of improper watering and sunlight management through data-driven insights and AI-powered plant identification.
 
 ## 🌿 Features
 
