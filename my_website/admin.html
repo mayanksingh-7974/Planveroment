@@ -1,0 +1,46 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+</head>
+<body>
+<h2>Contact Messages</h2>
+<ul id="messages"></ul>
+
+<h2>Subscribers</h2>
+<ul id="subs"></ul>
+
+<script>
+fetch("/api/admin/messages")
+.then(r=>r.json())
+.then(d=>{
+  messages.innerHTML=d.map(m=>
+  `<li>${m.name} - ${m.email} - ${m.message}</li>`).join("");
+});
+
+fetch("/api/admin/subscribers")
+.then(r=>r.json())
+.then(d=>{
+  subs.innerHTML=d.map(s=>
+  `<li>${s.email}</li>`).join("");
+});
+</script>
+</body>
+</html> -->
+<h2>Admin Dashboard</h2>
+
+<h3>Users</h3>
+<ul id="users"></ul>
+
+<h3>Messages</h3>
+<ul id="msgs"></ul>
+
+<script>
+fetch("/api/admin/users")
+.then(r=>r.json())
+.then(d=>users.innerHTML=d.map(x=>`<li>${x.email}</li>`).join(""));
+
+fetch("/api/admin/messages")
+.then(r=>r.json())
+.then(d=>msgs.innerHTML=d.map(x=>`<li>${x.message}</li>`).join(""));
+</script>

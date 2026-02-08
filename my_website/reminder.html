@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlantPal - Your Plant Care Companion</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .icon {
+            font-size: 1.2em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        input[type="text"],
+        input[type="datetime-local"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        input[type="datetime-local"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .reminders-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .reminder-item {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            position: relative;
+            animation: slideIn 0.3s ease;
+            transition: all 0.3s ease;
+        }
+
+        .reminder-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .reminder-item h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+        }
+
+        .reminder-item p {
+            color: #555;
+            margin-bottom: 5px;
+            font-size: 0.95em;
+        }
+
+        .reminder-item .plant-type {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-top: 8px;
+        }
+
+        .delete-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #ff4757;
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        .delete-btn:hover {
+            background: #ff3838;
+            transform: rotate(90deg) scale(1.1);
+        }
+
+        .tips-section {
+            grid-column: 1 / -1;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tip-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .tip-card h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .tip-card p {
+            color: #333;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+        }
+
+        .empty-state p {
+            font-size: 1.1em;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .status-upcoming {
+            background: #ffeaa7;
+            color: #fdcb6e;
+        }
+
+        .status-due-soon {
+            background: #fab1a0;
+            color: #e17055;
+        }
+
+        .status-overdue {
+            background: #ff7675;
+            color: white;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Scrollbar Styling */
+        .reminders-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .reminders-list::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        .reminders-list::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 10px;
+        }
+
+        .reminders-list::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: white;
+            padding: 20px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            animation: slideInRight 0.4s ease;
+            z-index: 1000;
+            border-left: 4px solid #667eea;
+        }
+
+        .notification.show {
+            display: block;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-box h4 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .stat-box p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌿 PlantPal</h1>
+            <p>Your Personal Plant Care Companion</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Add Reminder Section -->
+            <div class="card">
+                <h2><span class="icon">💧</span> Set Watering Reminder</h2>
+                <form id="reminderForm">
+                    <div class="form-group">
+                        <label for="plantName">Plant Name</label>
+                        <input type="text" id="plantName" placeholder="e.g., Lucky Bamboo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="plantType">Plant Type</label>
+                        <select id="plantType" required>
+                            <option value="">Select type</option>
+                            <option value="Succulent">Succulent</option>
+                            <option value="Tropical">Tropical</option>
+                            <option value="Cactus">Cactus</option>
+                            <option value="Fern">Fern</option>
+                            <option value="Flowering">Flowering</option>
+                            <option value="Herb">Herb</option>
+                            <option value="Indoor">Indoor</option>
+                            <option value="Outdoor">Outdoor</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wateringDate">Next Watering Date & Time</label>
+                        <input type="datetime-local" id="wateringDate" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes (Optional)</label>
+                        <textarea id="notes" placeholder="Add care instructions or notes..."></textarea>
+                    </div>
+
+                    <button type="submit">Add Reminder</button>
+                </form>
+            </div>
+
+            <!-- Reminders List Section -->
+            <div class="card">
+                <h2><span class="icon">📋</span> My Reminders</h2>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <h4 id="totalReminders">0</h4>
+                        <p>Total</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4 id="upcomingReminders">0</h4>
+                        <p>Upcoming</p>
+                    </div>
+                    <div class="stat-box">
+                        <h4 id="overdueReminders">0</h4>
+                        <p>Overdue</p>
+                    </div>
+                </div>
+
+                <div class="reminders-list" id="remindersList">
+                    <div class="empty-state">
+                        <p>🪴 No reminders yet. Add your first plant!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Plant Care Tips Section -->
+            <div class="card tips-section">
+                <h2><span class="icon">💡</span> Plant Care Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <h3>🌞 Light Requirements</h3>
+                        <p>Most houseplants prefer bright, indirect light. Direct sunlight can scorch leaves, while too little light stunts growth.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>💧 Watering Wisdom</h3>
+                        <p>Water when the top inch of soil is dry. Overwatering is more harmful than underwatering. Ensure proper drainage!</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>🌡️ Temperature & Humidity</h3>
+                        <p>Keep plants away from drafts and heating vents. Most thrive in 65-75°F. Mist tropical plants for added humidity.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>🌱 Fertilizing</h3>
+                        <p>Feed plants during growing season (spring/summer) every 2-4 weeks. Reduce or stop in fall and winter.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>✂️ Pruning</h3>
+                        <p>Remove dead or yellowing leaves promptly. Prune regularly to encourage bushier growth and prevent diseases.</p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>🪴 Repotting</h3>
+                        <p>Repot when roots grow through drainage holes or soil depletes quickly. Best done in spring before active growth.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="notification" id="notification">
+        <p id="notificationText"></p>
+    </div>
+
+    <script>
+        // Initialize reminders from localStorage
+        let reminders = JSON.parse(localStorage.getItem('plantReminders')) || [];
+
+        // Display reminders on page load
+        displayReminders();
+        updateStats();
+
+        // Check for due reminders every minute
+        setInterval(checkReminders, 60000);
+        checkReminders(); // Check immediately on load
+
+        // Form submission
+        document.getElementById('reminderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const plantName = document.getElementById('plantName').value;
+            const plantType = document.getElementById('plantType').value;
+            const wateringDate = document.getElementById('wateringDate').value;
+            const notes = document.getElementById('notes').value;
+
+            const reminder = {
+                id: Date.now(),
+                plantName: plantName,
+                plantType: plantType,
+                wateringDate: wateringDate,
+                notes: notes,
+                createdAt: new Date().toISOString()
+            };
+
+            reminders.push(reminder);
+            localStorage.setItem('plantReminders', JSON.stringify(reminders));
+
+            showNotification(`Reminder set for ${plantName}! 🌱`);
+            displayReminders();
+            updateStats();
+
+            // Reset form
+            this.reset();
+        });
+
+        function displayReminders() {
+            const remindersList = document.getElementById('remindersList');
+
+            if (reminders.length === 0) {
+                remindersList.innerHTML = '<div class="empty-state"><p>🪴 No reminders yet. Add your first plant!</p></div>';
+                return;
+            }
+
+            // Sort reminders by date
+            const sortedReminders = reminders.sort((a, b) => new Date(a.wateringDate) - new Date(b.wateringDate));
+
+            remindersList.innerHTML = sortedReminders.map(reminder => {
+                const wateringDate = new Date(reminder.wateringDate);
+                const now = new Date();
+                const hoursUntil = (wateringDate - now) / (1000 * 60 * 60);
+                
+                let statusBadge = '';
+                if (hoursUntil < 0) {
+                    statusBadge = '<span class="status-badge status-overdue">Overdue</span>';
+                } else if (hoursUntil < 24) {
+                    statusBadge = '<span class="status-badge status-due-soon">Due Soon</span>';
+                } else {
+                    statusBadge = '<span class="status-badge status-upcoming">Upcoming</span>';
+                }
+
+                return `
+                    <div class="reminder-item">
+                        <h3>${reminder.plantName}</h3>
+                        <p><strong>📅 Water on:</strong> ${wateringDate.toLocaleString()}</p>
+                        ${reminder.notes ? `<p><strong>📝 Notes:</strong> ${reminder.notes}</p>` : ''}
+                        <span class="plant-type">${reminder.plantType}</span>
+                        ${statusBadge}
+                        <button class="delete-btn" onclick="deleteReminder(${reminder.id})">×</button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function deleteReminder(id) {
+            if (confirm('Are you sure you want to delete this reminder?')) {
+                reminders = reminders.filter(reminder => reminder.id !== id);
+                localStorage.setItem('plantReminders', JSON.stringify(reminders));
+                displayReminders();
+                updateStats();
+                showNotification('Reminder deleted! 🗑️');
+            }
+        }
+
+        function checkReminders() {
+            const now = new Date();
+            reminders.forEach(reminder => {
+                const wateringDate = new Date(reminder.wateringDate);
+                const timeDiff = wateringDate - now;
+                const hoursDiff = timeDiff / (1000 * 60 * 60);
+
+                // Notify if due within 1 hour
+                if (hoursDiff > 0 && hoursDiff <= 1) {
+                    showNotification(`⏰ Time to water ${reminder.plantName}!`);
+                }
+            });
+        }
+
+        function updateStats() {
+            const now = new Date();
+            let upcoming = 0;
+            let overdue = 0;
+
+            reminders.forEach(reminder => {
+                const wateringDate = new Date(reminder.wateringDate);
+                if (wateringDate < now) {
+                    overdue++;
+                } else {
+                    upcoming++;
+                }
+            });
+
+            document.getElementById('totalReminders').textContent = reminders.length;
+            document.getElementById('upcomingReminders').textContent = upcoming;
+            document.getElementById('overdueReminders').textContent = overdue;
+        }
+
+        function showNotification(message) {
+            const notification = document.getElementById('notification');
+            const notificationText = document.getElementById('notificationText');
+            
+            notificationText.textContent = message;
+            notification.classList.add('show');
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // Set minimum datetime to current time
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('wateringDate').min = now.toISOString().slice(0, 16);
+    </script>
+</body>
+</html>

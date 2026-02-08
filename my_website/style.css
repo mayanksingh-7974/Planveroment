@@ -180,3 +180,16 @@ nav {
 .nav-search button:hover {
     background: #218838;
 }
+/* DARK MODE */
+body.dark{
+  background:#121212;
+  color:white;
+}
+
+body.dark .about-section{
+  background:#1c1c1c;
+}
+
+body.dark .team-card{
+  background:#2b2b2b;
+}

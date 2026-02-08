@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Planveroment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #094b03 0%, #31921b 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
+            background-size: cover;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            color: #0aa030;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+        }
+
+        .content-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .content-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+
+        .content-box h3 {
+            color: #17cf2c;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .content-box p {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        /* Story Timeline */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: 0;
+            margin-right: 52%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: 52%;
+            margin-right: 0;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #61d356;
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 4px #667eea;
+            top: 30px;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(135deg, #09973b 0%, #7fd16e 100%);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .value-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .value-card h3 {
+            color: #54c141;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .value-card p {
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #36b414 0%, #0d6d15 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+        }
+
+        .team-info {
+            padding: 25px;
+        }
+
+        .team-info h3 {
+            color: #333;
+            font-size: 1.4em;
+            margin-bottom: 8px;
+        }
+
+        .team-info .role {
+            color: #28a011;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .team-info p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            margin: 80px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        /* Mission Statement */
+        .mission-statement {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            padding: 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .mission-statement h2 {
+            font-size: 2.5em;
+            color: #06690c;
+            margin-bottom: 25px;
+        }
+
+        .mission-statement p {
+            font-size: 1.3em;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .hero p {
+                font-size: 1.1em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .content-box {
+                padding: 25px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content,
+            .timeline-item:nth-child(even) .timeline-content {
+                margin-left: 50px;
+                margin-right: 0;
+                text-align: left;
+            }
+
+            .timeline-dot {
+                left: 20px;
+            }
+
+            .mission-statement {
+                padding: 40px 30px;
+            }
+
+            .mission-statement h2 {
+                font-size: 2em;
+            }
+
+            .mission-statement p {
+                font-size: 1.1em;
+            }
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: white;
+            padding: 50px;
+            border-left: 5px solid #667eea;
+            margin: 40px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .quote-section blockquote {
+            font-size: 1.4em;
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .quote-section cite {
+            font-size: 1.1em;
+            color: #1ecb3e;
+            font-weight: 600;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>🌿 About Planveroment</h1>
+            <p>Growing Together, One Plant at a Time</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Our Story Section -->
+        <section class="section fade-in">
+            <h2 class="section-title">Our Story</h2>
+            <div class="content-box">
+                <p>Our journey began with three friends — Mayank, Ajeet, and Shailesh — who shared a simple belief: plants deserve the same care and attention as any living being.
+
+Mayank was always curious about why plants failed to thrive even when people tried their best. Ajeet believed that the right treatment at the right time could revive almost any plant. Shailesh, the most patient of the three, understood that plant care isn’t rushed — it’s built on consistency, observation, and love.
+
+What started as casual discussions and experiments with soil, water, and sunlight soon turned into a mission: to make plant care easy, reliable, and effective for everyone. They realized that many plants don’t die due to neglect, but due to incorrect care.
+
+That’s how this platform was born — to provide thoughtful plant care treatments, practical guidance, and trust-based solutions that help plants grow healthier and happier.
+
+Because when plants thrive, so do we. 🌿.</p>
+                
+                
+            </div>
+        </section>
+
+        <!-- Mission Statement -->
+        <div class="mission-statement">
+            <h2>Our Mission</h2>
+            <p>Our mission is to make plant care simple, joyful, and accessible for everyone.
+We believe plants are more than decoration—they’re living companions that bring calm, freshness, and positivity into our lives.
+
+At Do Care Plant Care, we aim to guide every plant parent—beginner or expert—with trusted tips, practical care routines, and mindful plant practices, so every plant can grow healthy and happy.
+
+We don’t just help plants survive—we help them thrive.</p>
+        </div>
+
+        <!-- Timeline Section -->
+        
+
+        <!-- Values Section -->
+        <section class="section">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🌱</div>
+                    <h3>Growth Mindset</h3>
+                    <p>We believe in continuous learning and improvement, both for our users and our team. Every wilted leaf is a learning opportunity, and every thriving plant is a celebration worth sharing.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>Community First</h3>
+                    <p>Our users are at the heart of everything we do. We foster a supportive, inclusive community where beginners and experts alike can share their plant journeys without judgment.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Sustainability</h3>
+                    <p>We're committed to promoting environmentally responsible plant care practices, reducing water waste, and supporting global reforestation efforts through our platform and partnerships.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h3>Innovation</h3>
+                    <p>We constantly explore new technologies and methodologies to make plant care smarter, easier, and more effective, while keeping our platform accessible and user-friendly.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">✨</div>
+                    <h3>Simplicity</h3>
+                    <p>Complex plant science made simple. We translate botanical expertise into actionable, easy-to-understand advice that anyone can follow, regardless of their gardening background.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">❤️</div>
+                    <h3>Passion</h3>
+                    <p>We genuinely love plants and believe in their power to improve our lives, purify our spaces, and connect us with nature. This passion drives everything we create.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Offer Section -->
+        <section class="section">
+            <h2 class="section-title">What We Offer</h2>
+            <div class="content-box">
+                <h3>🌿 Comprehensive Plant Database</h3>
+                <p>Access detailed care information for over 5,000 plant species, from common houseplants to rare tropical varieties. Each profile includes watering schedules, light requirements, common problems, and propagation tips curated by our team of expert botanists.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>⏰ Smart Reminder System</h3>
+                <p>Never forget to water your plants again. Our intelligent reminder system learns from your behavior and adjusts schedules based on seasonal changes, humidity levels, and individual plant needs. Receive notifications via email, SMS, or push notifications.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>🔍 Plant Health Diagnostics</h3>
+                <p>Upload photos of your plants and our AI-powered diagnostic tool will identify diseases, pest infestations, and nutrient deficiencies within seconds. Receive instant treatment recommendations with step-by-step guides to restore your plant's health.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>👥 Vibrant Community</h3>
+                <p>Join thousands of plant enthusiasts in our active community forums. Share your plant photos, ask questions, participate in monthly challenges, and connect with local plant parents. Our moderated community ensures a supportive, spam-free environment.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>📚 Educational Resources</h3>
+                <p>Learn from expert-written articles, video tutorials, seasonal guides, and interactive courses covering everything from basic plant care to advanced topics like hydroponics, propagation techniques, and creating terrariums.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>🛍️ Curated Shopping</h3>
+                <p>Discover quality plant care products, tools, and accessories through our partnerships with trusted suppliers. Support local nurseries through our marketplace and enjoy exclusive discounts on eco-friendly products.</p>
+            </div>
+        </section>
+
+        
+
+       
+
+        <!-- Stats Section -->
+    </div>
+
+    <
+    <div class="container">
+        <!-- Why Choose Us Section -->
+        <section class="section">
+            <h2 class="section-title">Why Choose Planveroment?</h2>
+            <div class="content-box">
+                <h3>🎯 Personalized Experience</h3>
+                <p>Unlike generic plant care apps, PlantPal learns from your specific environment, schedule, and plant collection to provide truly personalized recommendations. Our adaptive algorithms consider your local climate, seasonal changes, and even your watering habits to ensure optimal care for every plant.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>🔬 Science-Backed Information</h3>
+                <p>Every tip, guide, and recommendation on PlantPal is reviewed by our team of professional botanists and horticulturists. We combine traditional botanical knowledge with cutting-edge research to give you the most accurate, up-to-date plant care information available.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>🌟 Proven Success</h3>
+                <p>Our users report a 95% improvement in plant health within the first three months of using PlantPal. We've helped rescue thousands of struggling plants and supported millions more to thrive. Join our community of successful plant parents who've transformed their green spaces.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>💚 Commitment to Sustainability</h3>
+                <p>Planveroment is more than a business—it's a movement toward greener living. For every 100 plants registered on our platform, we plant one tree through our partnerships with reforestation organizations. We've contributed to planting over 100,000 trees worldwide, offsetting our carbon footprint and supporting global environmental efforts.</p>
+            </div>
+        </section>
+
+        <!-- Looking Ahead Section -->
+        <section class="section">
+            <h2 class="section-title">Looking Ahead</h2>
+            <div class="content-box">
+                <p>As we look to the future, our vision for Planveroment continues to grow. We're developing exciting new features including integration with smart home devices and IoT sensors that will automatically monitor soil moisture, light levels, and air quality. Imagine your plants communicating their needs directly to you through real-time data!</p>
+                
+                <p>We're also expanding our educational programs with virtual workshops led by renowned botanists, creating a PlantPal podcast featuring plant care experts and enthusiasts, and developing an augmented reality feature that will help you visualize how plants will look in your space before you buy them.</p>
+                
+                <p>Our commitment to sustainability continues to strengthen. We're launching a plant adoption program connecting plant lovers with rescued and unwanted plants, creating partnerships with more eco-friendly product manufacturers, and developing comprehensive guides on creating sustainable, self-watering plant systems.</p>
+                
+                <p>Most importantly, we're focused on expanding our global community. We're working on supporting more languages, creating regional plant care guides that address specific climates and challenges, and building partnerships with botanical gardens and educational institutions worldwide to make plant knowledge accessible to everyone.</p>
+            </div>
+        </section>
+
+        <!-- Join Us Section -->
+        <div class="mission-statement">
+            <h2>Join Our Growing Community</h2>
+            <p>Whether you're a complete beginner with your first succulent or an experienced gardener with a jungle of houseplants, PlantPal is here to support your journey. Together, we're creating a greener, healthier world—one plant at a time. Welcome to the family! 🌿</p>
+        </div>
+    </div>
+</body>
+</html>

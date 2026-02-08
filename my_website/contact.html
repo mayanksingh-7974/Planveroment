@@ -1,0 +1,17 @@
+<h2>Contact Us</h2>
+<input id="n" placeholder="Name"><br><br>
+<input id="e" placeholder="Email"><br><br>
+<textarea id="m"></textarea><br><br>
+<button onclick="send()">Send</button>
+
+<script>
+async function send(){
+  await fetch("/api/contact",{
+    method:"POST",
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:n.value,email:e.value,message:m.value})
+  });
+
+  alert("Message sent!");
+}
+</script>
