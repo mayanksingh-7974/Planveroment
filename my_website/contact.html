@@ -1,17 +1,38 @@
-<h2>Contact Us</h2>
-<input id="n" placeholder="Name"><br><br>
-<input id="e" placeholder="Email"><br><br>
-<textarea id="m"></textarea><br><br>
-<button onclick="send()">Send</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel = "stylesheet" href = "style.css">
+</head>
+<body>
+   <section class="gallery">
+  <img src="imga.jpg.jpeg" alt="Plant Image">
+  <img src="imgb.jpg.jpeg" alt="Plant Image">
+  <img src="img05.jfif" alt="Plant Image">
+  <img src="img06.jfif" alt="Plant Image">
+  <img src="img07.jfif" alt="Plant Image">
+  <img src="imgf.jpg.jpeg" alt="Plant Image">
+  <img src="imgg.jpg.jpeg" alt="Plant Image">
+  <img src="imgh.jpg.jpeg" alt="Plant Image">
+  <img src="imgi.jpg.jpeg" alt="Plant Image">
+  <img src="imgj.jpg.jpeg" alt="Plant Image">
+  <img src="imgk.jpg.jpeg" alt="Plant Image">
+  <img src="imgl.jpg.jpeg" alt="Plant Image">
+  <img src="imgm.jpg.jpeg" alt="Plant Image">
+  <img src="imgn.jpg.jpeg" alt="Plant Image">
+  <img src="imgo.jpg.jpeg" alt="Plant Image">
+  <img src="imgp.jpg.jpeg" alt="Plant Image">
+  <img src="img08.jfif" alt="Plant Image">
+  <img src="imgr.png.jpeg" alt="Plant Image">
+  <img src="imgs.png.jpeg" alt="Plant Image">
+  <img src="imgt.png.jpeg" alt="Plant Image">
+   <img src="imgu.jpg" alt="Plant Image">
+  <img src="imgv.jpg" alt="Plant Image">
+  <img src="imgw.jpg" alt="Plant Image">
+  <img src="imgx.jpg" alt="Plant Image">
+</section>
 
-<script>
-async function send(){
-  await fetch("/api/contact",{
-    method:"POST",
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name:n.value,email:e.value,message:m.value})
-  });
-
-  alert("Message sent!");
-}
-</script>
+</body>
+</html>
